@@ -1,0 +1,10 @@
+1. 	Extracted the Photo_Location.kmz file.
+
+2. 	Parsed and read the data from the .kml file obtained after extraction using BeautifulSoup lxml parser.
+
+3. 	While reading I stored the name, the latitude and the longitude of the image in seperate lists. Elavation is not taken into
+	account as the image location captured by the drone is at the ground. The elavation is due to the position of the drone which 
+	is redundant. We are considering 2-D distance (ground to ground).
+
+4.	Now I read the DJI_0301.SRT file and for each time stamp I traversed the whole lists of coordinates saved in step 3, and
+	calculated the distance for each of the pair and if it is less than 35 metres I noted it's details in my output.csv file.
