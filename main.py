@@ -1,11 +1,13 @@
 '''
-Author: Saptarshi Dey
+Author: 
+		Saptarshi Dey
 		National Institute of Technology, Durgapur
 		07saptarshidey@gmail.com
 
-Time Complexity Analysis: 	Let, n = Number of time-stamps in .SRT file (Queries)
-				 			Let, m = Number of geo-tagged locations (Search-space) in .KML file
-				 			Complexity: O(n*m)
+Time Complexity Analysis: 	
+		Let, n = Number of time-stamps in .SRT file (Queries)
+		Let, m = Number of geo-tagged locations (Search-space) in .KML file
+		Complexity: O(n*m)
 '''
 '''
 
@@ -115,35 +117,43 @@ with open(srtfile,'r') as srt:
 					output_file.write("\n")
 output_file.close()
 
+output_assets=open("output_assets.csv","w")
+output_assets.write("    ASSET_NAME    ,    IMAGES    \n")
 
 
+'''
+Value of query_radius now changed to 50 as per requirement.
+'''
+query_radius=50.00		
+assets_file=("./software_dev/assets.csv")
 
+with open(assets_file,'r') as assets:
+	cnt=0
+	for data in assets:
+		cnt=cnt+1
+		'''
+		Ignoring the first line because no data is present there.
+		'''
+		if(cnt==1):
+			continue
+		line=str(data)
+		line=line.split(",")
+		longitude_2=float(line[2])
+		latitude_2=float(line[1])
+		output_assets.write(line[0]+"\n")
+		'''
+			Now traverseing all the given geo-coordinates in the .kml file and calculating the distance for each of them from
+			the current position.
+		'''
+		for i in range(n):
+			latitude_1=latitude[i]
+			longitude_1=longitude[i]
+			dis=distance(latitude_1,latitude_2,longitude_1,longitude_2)		
+			if(dis<=query_radius):
+				output_assets.write(","+name[i])
+				output_assets.write("\n")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+output_assets.close()
 
 
 

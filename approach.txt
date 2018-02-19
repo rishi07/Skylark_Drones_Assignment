@@ -8,3 +8,6 @@
 
 4.	Now I read the DJI_0301.SRT file and for each time stamp I traversed the whole lists of coordinates saved in step 3, and
 	calculated the distance for each of the pair and if it is less than 35 metres I noted it's details in my output.csv file.
+
+5.	Now, for the assets.csv file I did the same way. First I read the data from assets.csv file and then calculated the distance 
+	for each of them and if it is less than 50 then I wrote it in the output_assets.csv file.
